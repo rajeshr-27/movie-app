@@ -1,0 +1,65 @@
+.home .card-header{
+    background-color: #0dcaf0;
+    color:white;
+}
+.header.bg {
+    background: #0dcaf0;
+    color: white;
+}
+.navbar-brand, .navbar-toggler {
+    color:white !important;
+}
+
+.home .latest_update{
+    border: none !important;
+}
+.home .latest_update .card-header{
+    background-color: #ff5100 !important;
+}
+.watch-btn {
+    padding:0px 5px;
+    color:red !important;
+}
+.slider-container {
+    margin: 0 auto;
+    /* padding: 20px;
+    width: 80%; */
+  }
+  
+  .slider-item {
+    position: relative;
+    padding: 10px;
+  }
+  
+  .slider-item img {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .slider-item:hover img {
+    transform: scale(1.1);
+  }
+  
+  .slider-item-info {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+  }
+  
+  .slider-item:hover .slider-item-info {
+    display: block;
+  }
+
+  .slick-slide img {
+    border:2px solid #27ae26  !important;
+    height: 172px;
+    width: 132px;
+  }
+  
+  
