@@ -10,6 +10,7 @@ import Login from './components/Login';
 import {Provider} from 'react-redux';
 import store from './redux/app/store';
 import ProtectedRoute from './components/ProtectedRoute';
+import Search from './components/Search';
  function App() {
   return (
     <div className="App">
@@ -17,7 +18,8 @@ import ProtectedRoute from './components/ProtectedRoute';
         <Router>
           <Routes>
             <Route path="/" element={<Header />} >
-                <Route path="/" element={<Home />} ></Route>              
+                <Route path="/" element={<Home />} ></Route>   
+                <Route path="/search" element={<Search />} ></Route>              
                 <Route path="/watch-movie/:id" element={<WatchMovie />}></Route>
                 <Route path="/register" element={<Register />}></Route>
                 <Route path="/login" element={<Login />}></Route>

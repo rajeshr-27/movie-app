@@ -135,18 +135,18 @@ function Movie(){
                             <tbody>
                                 {movieList && 
                                     movieList.map((movie_data, i)=>(
-                                        <tr key={movie_data.id}>
+                                        <tr key={movie_data._id}>
                                             <td>{i+1}</td>
                                             <td>{movie_data.image &&
                                                 <img alt={movie_data.image} src={API_URL+"/"+ movie_data.image} className='responsive' style={{"height":"62px   "}} />
                                             }</td>  
                                             <td>{movie_data.movie_name}</td>  
-                                            <td>{ movie_data.category_name}</td>    
+                                            <td>{ movie_data.category.name}</td>    
                                             <th>{movie_data.imdb}</th>  
                                             <th>{movie_data.created_at}</th>  
                                             <th>
-                                                <Link onClick={() =>handleShow(movie_data.id)} className='btn btn-sm btn-primary'>Edit</Link> 
-                                                |  <Link onClick={() => handleDelete(movie_data.id)}  className='btn btn-sm btn-danger'>Delete</Link>   
+                                                <Link onClick={() =>handleShow(movie_data._id)} className='btn btn-sm btn-primary'>Edit</Link> 
+                                                |  <Link onClick={() => handleDelete(movie_data._id)}  className='btn btn-sm btn-danger'>Delete</Link>   
                                             </th>                    
                                         </tr>
                                     ))
@@ -194,7 +194,7 @@ function Movie(){
                                     <option value="">---Select Category</option>
                                     {categoryList && 
                                         categoryList.map((category) =>(
-                                            <option value={category.id}>{category.name}</option>
+                                            <option value={category._id}>{category.name}</option>
                                         )
                                         )
                                     }

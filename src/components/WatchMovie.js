@@ -32,7 +32,7 @@ function WatchMovie() {
                             url={ API_URL +"/videos/"+movie.movie_link}
                             />
                         </div> 
-                        <div className="movie-title mt-2"><h4>{movie.movie_name} - {(movie.category == 1) ? 'Tamil':'English'} Full Movies HD</h4></div>
+                        <div className="movie-title mt-2"><h5>{movie.movie_name} - {(movie.category) ? movie.category.name : ''} HD</h5></div>
                         <div className="imdb"><Badge bg="warning" text="dark">IMDB : {movie.imdb}</Badge></div>  
                         <div className="movie-details mt-1">{movie.movie_details}</div>                
                     </div>

@@ -1,10 +1,9 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
-
-
+import axios from 'axios';
 const settings = {
     dots: false,
     infinite: true,
@@ -39,23 +38,30 @@ const settings = {
       }
     ]
   };
-  const API_URL = process.env.REACT_APP_API_URL;
-  const NetflixSlider = ({ cat_id, movies }) => {
+
+  	const NetflixSlider = ({ cat_id }) => {
+    const API_URL = process.env.REACT_APP_API_URL;
+    const [movies,setMovies] = useState([]);
+
+    useEffect(() => {
+      	const fetchMovies = async () => {
+          	const response = await axios.get(API_URL+`/movie/list?category=${cat_id}`);
+        	setMovies(response.data.movies);         
+      	}
+      	fetchMovies();
+    }, []) 
     return (
-      <div className="slider-container">
+      <div className="slider-container">     
         <Slider {...settings}>
-          {movies.map((movie, index) => (
-            (movie.category_id === cat_id) 
-            ?
-            <div key={index} className="slider-item">
-            <Link to={`/watch-movie/${movie.id}`} >
+          {movies.map((movie, index) => (            
+            <div key={index+1} index={index+1} className="slider-item">
+            <Link to={`/watch-movie/${movie._id}`} >
               <img src={API_URL+"/"+ movie.image} alt={movie.movie_name} />
               <div className="slider-item-info">
-                <h3>{movie.movie_name}</h3>
+                <div>{movie.movie_name}</div>
               </div>
             </Link>
             </div>
-            :''
           ))}
         </Slider>
       </div>
