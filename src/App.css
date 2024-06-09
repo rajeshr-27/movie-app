@@ -58,8 +58,8 @@
 
   .slick-slide img {
     border:2px solid #27ae26  !important;
-    height: 172px;
-    width: 132px;
+    /* height: 172px;
+    width: 132px; */
   }
   .slick-prev:before, .slick-next:before{
     color: black !important;
@@ -79,4 +79,45 @@
     margin-top: 20px;
   }
   
-  
+
+  /* src/Header.css */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+}
+
+.logo {
+  font-size: 24px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 5px;
+  font-size: 16px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
+
+.search-button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  outline: none;
+}
+
+.search-button:focus {
+  outline: none;
+}
+
