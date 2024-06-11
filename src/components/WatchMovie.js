@@ -5,14 +5,16 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 // import {Media, Video } from '@vidstack/player-react';
-import { MediaPlayer, MediaProvider, MediaPlayerInstance } from '@vidstack/react';
+import { MediaPlayer, MediaProvider } from '@vidstack/react';
 import { defaultLayoutIcons, DefaultVideoLayout } from '@vidstack/react/player/layouts/default';
+import {Link} from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { faTelegram } from '@fortawesome/free-solid-svg-icons'
 
 import '@vidstack/react/player/styles/default/theme.css';
 import '@vidstack/react/player/styles/default/layouts/video.css';
+import { faTelegram } from "@fortawesome/free-brands-svg-icons";
 function WatchMovie() {
-    const containerRef = useRef(null);
-    const [currentTime, setCurrentTime] = useState('')
     const {id} = useParams();
     const API_URL = process.env.REACT_APP_API_URL;
     const [movie,setMovie] = useState('')
@@ -25,22 +27,7 @@ function WatchMovie() {
                 console.log(error)
             }
         }
-        fetchMovie();
-        console.log(containerRef);
-
-        const fetchCurrentTime = () => {
-           // console.log(containerRef)
-            if(containerRef.current){
-                const currentTimeElement = containerRef.current.querySelector('[data-type="current"]');
-                if (currentTimeElement) {
-                setCurrentTime(currentTimeElement.textContent);
-                }
-            }
-        }
-        fetchCurrentTime();
-        const intervalId = setInterval(fetchCurrentTime, 1000); // Fetch every secon
-        return () => clearInterval(intervalId);
-       
+        fetchMovie();       
     },[API_URL, id,setMovie ])
     return(
         <div className="container mt-5">
@@ -55,25 +42,17 @@ function WatchMovie() {
                         <div className="player-wrapper">
                          
 
-                            {/* <ReactPlayer controls className="react-player" width='100%' url={ API_URL +"/videos/"+movie.movie_link}
-                            /> */}
-                             {/* <Media>
-                                <Video loading="visible" poster="https://media-files.vidstack.io/poster.png" controls preload="true">
-                                    <video loading="visible" poster="https://media-files.vidstack.io/poster-seo.png" src={ API_URL +"/videos/"+movie.movie_link} preload="none" data-video="0" controls />
-                                </Video>
-                            </Media> */}
-                            <MediaPlayer title="Sprite Fight" src={movie &&  API_URL +"/videos/"+movie.movie_link} >
+                          
+                            <MediaPlayer autoplay title={movie.movie_name} src={movie &&  API_URL +"/videos/"+movie.movie_link} >
                                 <MediaProvider />
-                                <DefaultVideoLayout thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt" icons={defaultLayoutIcons} />
+                                <DefaultVideoLayout icons={defaultLayoutIcons} />
                             </MediaPlayer>
                         </div> 
-                        <div className="movie-title mt-2"><h5>{movie.movie_name} - {(movie.category) ? movie.category.name : ''} HD</h5></div>
+                        <div className="movie-title mt-2"><h5>{movie.movie_name}</h5></div>
                         <div className="imdb"><Badge bg="warning" text="dark">IMDB : {movie.imdb}</Badge></div>  
-                        <div className="movie-details mt-1">{movie.movie_details}</div>    
-                        <div>
-                            Current Time: {currentTime}
-                        </div>
-                                 
+                        <p> <Link to="https://t.me/tamillancevideo" className="btn btn-sm btn-info mt-3" style={{"color":"white"}}><FontAwesomeIcon icon={faTelegram} /> Join Now Telegram</Link></p>
+                        <div className="movie-details mt-1">{movie.movie_details}</div>
+                                                      
                     </div>
                 </div>
             </div>
